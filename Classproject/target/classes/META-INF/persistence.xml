@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="MasterData" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>com.entities.BatchFinanceBE</class>
+		<class>com.entities.ClassBatchBE</class>
+		<class>com.entities.EmployeeBE</class>
+		<class>com.entities.EmployeeFinanceBE</class>
+		<class>com.entities.ExpenseBE</class>
+		<class>com.entities.StudentBE</class>
+		<class>com.entities.StudentFinanceBE</class>
+		<class>com.entities.UserBE</class>
+		<properties>
+			<!-- <property name="openjpa.BrokerFactory" value="ndb" /> <property name="openjpa.ndb.connectString" 
+				value="localhost:1186" /> <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/test" 
+				/> <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver" 
+				/> <property name="openjpa.ConnectionRetainMode" value="transaction" /> -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/CLASSDB" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="root" />
+
+			<!-- EclipseLink should create the database schema automatically -->
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> <!-- create-tables or drop-and-create-tables -->
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+			<property name="eclipselink.logging.level" value="SEVERE" />
+			<property name="eclipselink.application-location" value="D:/Database/" />
+		</properties>
+	</persistence-unit>
+
+</persistence>
+
