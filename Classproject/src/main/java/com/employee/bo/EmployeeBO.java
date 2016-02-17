@@ -5,19 +5,20 @@ package com.employee.bo;
 
 import java.util.List;
 
+import com.common.BusinessResult;
 import com.entities.EmployeeBE;
-import com.to.EmployeeTO;
 
 /**
  * @author Ashish
- *
  */
 public interface EmployeeBO {
-	
-	public EmployeeBE getEmployeeInfo(String employeeId);
-	
-	public List<EmployeeBE> getAllEmployees();
-	
-	public EmployeeBE enrollEmployee(EmployeeTO employeeInfo);
+
+    BusinessResult<EmployeeBE> getEmployeeInfo(String employeeId);
+
+    List<EmployeeBE> getAllEmployees();
+
+    BusinessResult<EmployeeBE> enrollEmployee(EmployeeBE employeeInfo, String userName, String password);
+
+    EmployeeBE getAllEmployeeInfo(String employeeId);
 
 }

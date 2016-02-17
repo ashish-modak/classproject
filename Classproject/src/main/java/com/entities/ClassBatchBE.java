@@ -5,141 +5,132 @@ package com.entities;
 
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.common.BatchStream;
 
 /**
  * @author Ashish
- * 
  */
 @Entity
-@Table(name = "CCSD_CLASSBATCH")
+@Table(name = "CCSD_CLASSBATCH", uniqueConstraints = @UniqueConstraint(columnNames = {
+        "CBTB_BATCHNAME",
+        "CBTB_BATCHSTD",
+        "CBTB_BATCHSTREAM"}))
 public class ClassBatchBE {
 
-	private long id;
+    private Long id;
 
-	private String batchName;
+    private String batchName;
 
-	private int batchStandard;
+    private int batchStandard;
 
-	private BatchStream batchStream;
+    private BatchStream batchStream;
 
-	private BatchFinanceBE batchFinance;
+    private long batchFee;
 
-	private Collection<StudentBE> students;
+    private Collection<StudentBE> students;
 
-	/**
-	 * @return the id
-	 */
-	@Id
-	@SequenceGenerator(name = "CBTBSEQ", sequenceName = "CCSD_CBATCH_SEQ", allocationSize = 50, initialValue = 5000)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CBTBSEQ")
-	@Column(name = "CBTB_ID", unique = true, nullable = false)
-	public long getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CBTB_ID", unique = true, nullable = false)
+    public Long getId() {
+        return id;
+    }
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the batchName
-	 */
-	@Column(name = "CBTB_BATCHNAME")
-	public String getBatchName() {
-		return batchName;
-	}
+    /**
+     * @return the batchName
+     */
+    @Column(name = "CBTB_BATCHNAME", nullable = false)
+    public String getBatchName() {
+        return batchName;
+    }
 
-	/**
-	 * @param batchName
-	 *            the batchName to set
-	 */
-	public void setBatchName(String batchName) {
-		this.batchName = batchName;
-	}
+    /**
+     * @param batchName the batchName to set
+     */
+    public void setBatchName(String batchName) {
+        this.batchName = batchName;
+    }
 
-	/**
-	 * @return the batchStandard
-	 */
-	@Column(name = "CBTB_BATCHSTD")
-	public int getBatchStandard() {
-		return batchStandard;
-	}
+    /**
+     * @return the batchStandard
+     */
+    @Column(name = "CBTB_BATCHSTD", nullable = false)
+    public int getBatchStandard() {
+        return batchStandard;
+    }
 
-	/**
-	 * @param batchStandard
-	 *            the batchStandard to set
-	 */
-	public void setBatchStandard(int batchStandard) {
-		this.batchStandard = batchStandard;
-	}
+    /**
+     * @param batchStandard the batchStandard to set
+     */
+    public void setBatchStandard(int batchStandard) {
+        this.batchStandard = batchStandard;
+    }
 
-	/**
-	 * @return the batchStream
-	 */
-	@Column(name = "CBTB_BATCHSTREAM")
-	@Enumerated(EnumType.STRING)
-	public BatchStream getBatchStream() {
-		return batchStream;
-	}
+    /**
+     * @return the batchFee
+     */
+    @Column(name = "CBTB_BATCHFEE", nullable = false)
+    public long getBatchFee() {
+        return batchFee;
+    }
 
-	/**
-	 * @param batchStream
-	 *            the batchStream to set
-	 */
-	public void setBatchStream(BatchStream batchStream) {
-		this.batchStream = batchStream;
-	}
+    /**
+     * @param batchFee the batchFee to set
+     */
+    public void setBatchFee(long batchFee) {
+        this.batchFee = batchFee;
+    }
 
-	/**
-	 * @return the batchFinance
-	 */
+    /**
+     * @return the batchStream
+     */
+    @Column(name = "CBTB_BATCHSTREAM", nullable = false)
+    @Enumerated(EnumType.STRING)
+    public BatchStream getBatchStream() {
+        return batchStream;
+    }
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "classBatch")
-	public BatchFinanceBE getBatchFinance() {
-		return batchFinance;
-	}
+    /**
+     * @param batchStream the batchStream to set
+     */
+    public void setBatchStream(BatchStream batchStream) {
+        this.batchStream = batchStream;
+    }
 
-	/**
-	 * @param batchFinance
-	 *            the batchFinance to set
-	 */
-	public void setBatchFinance(BatchFinanceBE batchFinance) {
-		this.batchFinance = batchFinance;
-	}
+    /**
+     * @return the students
+     */
+    @OneToMany(mappedBy = "classBatch")
+    public Collection<StudentBE> getStudents() {
+        return students;
+    }
 
-	/**
-	 * @return the students
-	 */
-	@OneToMany(mappedBy = "classBatch")
-	public Collection<StudentBE> getStudents() {
-		return students;
-	}
-
-	/**
-	 * @param students
-	 *            the students to set
-	 */
-	public void setStudents(Collection<StudentBE> students) {
-		this.students = students;
-	}
+    /**
+     * @param students the students to set
+     */
+    public void setStudents(Collection<StudentBE> students) {
+        this.students = students;
+    }
 
 }

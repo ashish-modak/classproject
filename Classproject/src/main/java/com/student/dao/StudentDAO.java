@@ -5,22 +5,21 @@ package com.student.dao;
 
 import java.util.List;
 
-import com.common.MessageTO;
+import com.common.BusinessResult;
+import com.common.MessageResult;
 import com.entities.StudentBE;
-import com.to.StudentTO;
 
 /**
  * @author Ashish
- *
  */
 public interface StudentDAO {
-	
-	public StudentBE getStudentInfo(String studentId);
-	
-	public List<StudentBE> getStudentsInfo(String studentName);
-	
-	public StudentBE enrollStudent(StudentTO studentInfo);
-	
-	public MessageTO removeStudent(Long studentID); 
-	
+
+    public BusinessResult<StudentBE> getStudentInfo(Long studentId);
+
+    public List<StudentBE> getStudentsInfo(String studentName);
+
+    public BusinessResult<StudentBE> enrollStudent(StudentBE studentInfo) throws Exception;
+
+    public MessageResult removeStudent(Long studentID);
+
 }

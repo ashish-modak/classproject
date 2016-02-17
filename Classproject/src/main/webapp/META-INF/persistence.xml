@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="MasterData" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+		<class>com.entities.ClassBatchBE</class>
+		<class>com.entities.EmployeeBE</class>
+		<class>com.entities.EmployeeFinanceBE</class>
+		<class>com.entities.ExpenseBE</class>
+		<class>com.entities.StudentBE</class>
+		<class>com.entities.StudentFinanceBE</class>
+		<class>com.entities.UserBE</class>
+		<class>com.entities.AttendanceBE</class>
+		<properties>
+			<!-- <property name="openjpa.BrokerFactory" value="ndb" /> <property name="openjpa.ndb.connectString" 
+				value="localhost:1186" /> <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/test" 
+				/> <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver" 
+				/> <property name="openjpa.ConnectionRetainMode" value="transaction" /> -->
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.password" value="root" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://127.6.155.2:3306/crystall" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" 
+				/> <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/CLASSDB" 
+				/> <property name="javax.persistence.jdbc.user" value="root" /> <property 
+				name="javax.persistence.jdbc.password" value="root" /> <property name="hibernate.hbm2ddl.auto" 
+				value="create" /> <property name="hibernate.show_sql" value="true" /> <property 
+				name="eclipselink.ddl-generation" value="drop-and-create-tables" /> <property 
+				name="eclipselink.ddl-generation.output-mode" value="sql-script" /> <property 
+				name="eclipselink.logging.level" value="FINE" /> <property name="eclipselink.application-location" 
+				value="D:/Database/" /> -->
+			
+
+
+
+			<!--<property name="hibernate.hbm2ddl.auto" value="create" /> <property 
+				name="hibernate.archive.autodetection" value="class, hbm" /> <property name="hibernate.show_sql" 
+				value="true" /> <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" 
+				/> <property name="hibernate.connection.password" value="root" /> <property 
+				name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/CLASSDB" 
+				/> <property name="hibernate.connection.username" value="root" /> <property 
+				name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
+		</properties>
+	</persistence-unit>
+
+</persistence>
+
+
+
+

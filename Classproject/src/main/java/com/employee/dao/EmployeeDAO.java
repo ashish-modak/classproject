@@ -5,19 +5,20 @@ package com.employee.dao;
 
 import java.util.List;
 
+import com.common.BusinessResult;
 import com.entities.EmployeeBE;
-import com.to.EmployeeTO;
 
 /**
  * @author Ashish
- * 
  */
 public interface EmployeeDAO {
 
-	public EmployeeBE getEmployeeInfo(String employeeId);
+    BusinessResult<EmployeeBE> getEmployeeInfo(Long employeeId);
 
-	public List<EmployeeBE> getAllEmployees();
+    List<EmployeeBE> getAllEmployees();
 
-	public EmployeeBE enrollEmployee(EmployeeTO employeeInfo);
+    BusinessResult<EmployeeBE> enrollEmployee(EmployeeBE employeeInfo) throws Exception;
+
+    EmployeeBE getAllEmployeeInfo(Long employeeId);
 
 }
